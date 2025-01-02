@@ -5072,37 +5072,85 @@ def remove_interfaces_within_fault_buffers(
     extract_coordinates: bool = True,
 ) -> Tuple[gpd.geodataframe.GeoDataFrame, gpd.geodataframe.GeoDataFrame]:
     """Function to create a buffer around a GeoDataFrame containing fault data and removing interface points
-    that are located within this buffer
+    that are located within this buffer.
 
     Parameters
     __________
 
         fault_gdf : gpd.geodataframe.GeoDataFrame
-            GeoDataFrame containing the fault data
+            GeoDataFrame containing the fault data.
+
+            +----+------+-----------+------------------------+
+            | ID | id   | formation | geometry               |
+            +----+------+-----------+------------------------+
+            | 0  | None | Fault1    | POINT (19.150 293.313) |
+            +----+------+-----------+------------------------+
+            | 1  | None | Fault1    | POINT (61.934 381.459) |
+            +----+------+-----------+------------------------+
+            | 2  | None | Fault1    | POINT (109.358 480.946)|
+            +----+------+-----------+------------------------+
+            | 3  | None | Fault1    | POINT (157.812 615.999)|
+            +----+------+-----------+------------------------+
+            | 4  | None | Fault1    | POINT (191.318 719.094)|
+            +----+------+-----------+------------------------+
 
         interfaces_gdf : gpd.geodataframe.GeoDataFrame
-            GeoDataFrame containing the interface point data
+            GeoDataFrame containing the interface point data.
+
+            +----+------+-----------+------------------------+
+            | ID | id   | formation | geometry               |
+            +----+------+-----------+------------------------+
+            | 0  | None | Ton       | POINT (19.000 293.000) |
+            +----+------+-----------+------------------------+
+            | 1  | None | Ton       | POINT (62.000 381.500) |
+            +----+------+-----------+------------------------+
+            | 2  | None | Ton       | POINT (109.000 481.000)|
+            +----+------+-----------+------------------------+
+            | 3  | None | Ton       | POINT (150.000 610.000)|
+            +----+------+-----------+------------------------+
+            | 4  | None | Ton       | POINT (190.000 710.000)|
+            +----+------+-----------+------------------------+
 
         distance : float, int
-                Distance of the buffer around the geometry object, e.g. ``distance=10``
+                Distance of the buffer around the geometry object, e.g. ``distance=10``.
 
         remove_empty_geometries : bool
-                Variable to remove empty geometries, Options include: ``True`` or ``False`` default ``True``
+                Variable to remove empty geometries, Options include: ``True`` or ``False`` default set to ``True``.
 
         extract_coordinates : bool
             Variable to extract X and Y coordinates from resulting Shapely Objects, Options include: ``True`` or
-            ``False`` default ``True``
+            ``False`` default set to ``True``.
 
     Returns
     _______
 
         gdf_out : gpd.geodataframe.GeoDataFrame
-            GeoDataFrame containing the vertices located outside the fault buffer
+            GeoDataFrame containing the vertices located outside the fault buffer.
+
+            +----+------+-----------+------------------------+
+            | ID | id   | formation | geometry               |
+            +----+------+-----------+------------------------+
+            | 0  | None | Ton       | POINT (150.000 610.000)|
+            +----+------+-----------+------------------------+
+            | 1  | None | Ton       | POINT (190.000 710.000)|
+            +----+------+-----------+------------------------+
 
         gdf_in : gpd.geodataframe.GeoDataFrame
-            GeoDataFrame containing the vertices located inside the fault buffer
+            GeoDataFrame containing the vertices located inside the fault buffer.
+
+            +----+------+-----------+------------------------+
+            | ID | id   | formation | geometry               |
+            +----+------+-----------+------------------------+
+            | 0  | None | Ton       | POINT (19.000 293.000) |
+            +----+------+-----------+------------------------+
+            | 1  | None | Ton       | POINT (62.000 381.500) |
+            +----+------+-----------+------------------------+
+            | 2  | None | Ton       | POINT (109.000 481.000)|
+            +----+------+-----------+------------------------+
 
     .. versionadded:: 1.0.x
+
+    .. versionchanged:: 1.2
 
     Example
     _______
@@ -5124,6 +5172,15 @@ def remove_interfaces_within_fault_buffers(
 
         >>> # Creating GeoDataFrame from Points
         >>> fault_gdf = gpd.GeoDataFrame(geometry=[point1, point2])
+        >>> fault_gdf
+
+        +----+-------------+
+        | ID | geometry    |
+        +====+=============+
+        | 0  | POINT (0 0) |
+        +----+-------------+
+        | 1  | POINT (5 0) |
+        +----+-------------|
 
         >>> # Creating first LineString
         >>> linestring1 = LineString([(0, 0), (10, 10), (20, 20)])
@@ -5137,25 +5194,42 @@ def remove_interfaces_within_fault_buffers(
 
         >>> # Creating GeoDataFrame from LineStrings
         >>> buffer_objects_gdf = gpd.GeoDataFrame(geometry=[linestring1, linestring2])
+        >>> buffer_objects_gdf
+
+        +----+-------------+
+        | ID | geometry    |
+        +====+=============+
+        | 0  | POINT (0 0) |
+        +----+-------------+
+        | 1  | POINT (5 0) |
+        +----+-------------|
 
         >>> # Removing interfaces within fault buffers
         >>> result_out, result_in = gg.vector.remove_interfaces_within_fault_buffers(fault_gdf=fault_gdf, interfaces_gdf=buffer_objects_gdf, distance=10)
 
         >>> # Inspecting the Base Geometries that remain outside
         >>> result_out
-            geometry	                X	Y
-        0	POINT (7.07107 7.07107)	        7.07	7.07
-        1	POINT (10.00000 10.00000)	10.00	10.00
-        2	POINT (20.00000 20.00000)	20.00	20.00
-        3	POINT (10.00000 0.00000)	10.00	0.00
-        4	POINT (20.00000 10.00000)	20.00	10.00
-        5	POINT (30.00000 20.00000)	30.00	20.00
+
+        +----+---------------------------+-------+-------+
+        |    | geometry                  |   X   |   Y   |
+        +----+---------------------------+-------+-------+
+        |  0 | POINT (7.07107 7.07107)   |  7.07 |  7.07 |
+        |  1 | POINT (10.00000 10.00000) | 10.00 | 10.00 |
+        |  2 | POINT (20.00000 20.00000) | 20.00 | 20.00 |
+        |  3 | POINT (10.00000 0.00000)  | 10.00 |  0.00 |
+        |  4 | POINT (20.00000 10.00000) | 20.00 | 10.00 |
+        |  5 | POINT (30.00000 20.00000) | 30.00 | 20.00 |
+        +----+---------------------------+-------+-------+
 
         >>> # Inspecting the Base Geometries that remain inside
         >>> result_in
-            geometry	        X       Y
-        0	POINT (0.00000 0.00000)	0.00	0.00
-        1	POINT (7.07107 7.07107)	7.07	7.07
+
+        +----+---------------------------+-------+-------+
+        |    | geometry                 |   X   |   Y   |
+        +----+---------------------------+-------+-------+
+        |  0 | POINT (0.00000 0.00000)  |  0.00 |  0.00 |
+        |  1 | POINT (7.07107 7.07107)  |  7.07 |  7.07 |
+        +----+---------------------------+-------+-------+
 
 
     See Also
