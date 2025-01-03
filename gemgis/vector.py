@@ -5308,22 +5308,24 @@ def remove_interfaces_within_fault_buffers(
 
 
 def calculate_angle(linestring: shapely.geometry.linestring.LineString) -> float:
-    """Calculating the angle of a LineString to the vertical
+    """Calculating the angle of a LineString to the vertical.
 
     Parameters
     __________
 
         linestring : shapely.geometry.linestring.LineString
             Shapely LineString consisting of two vertices,
-            e.g. ``linestring = LineString([(0, 0), (10, 10), (20, 20)])``
+            e.g. ``linestring = LineString([(0, 0), (10, 10), (20, 20)])``.
 
     Returns
     _______
 
         angle : float
-            Angle of a LineString to the vertical
+            Angle of a LineString to the vertical.
 
     .. versionadded:: 1.0.x
+
+    .. versionupdated:: 1.2
 
     Example
     _______
@@ -5351,7 +5353,7 @@ def calculate_angle(linestring: shapely.geometry.linestring.LineString) -> float
     Note
     ____
 
-        The LineString must only consist of two points (start and end point)
+        The LineString must only consist of two points (start and end point).
 
     """
 
