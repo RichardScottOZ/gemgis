@@ -8555,12 +8555,12 @@ def create_bbox(extent: List[Union[int, float]]) -> shapely.geometry.polygon.Pol
     Parameters
     ----------
         extent : List[Union[int, float]]
-         List of minx, maxx, miny, maxy values, e.g. ``extent=[0, 972, 0, 1069]``
+         List of minx, maxx, miny, maxy values, e.g. ``extent=[0, 972, 0, 1069]``.
 
     Returns
     -------
         bbox : shapely.geometry.polygon.Polygon
-            Rectangular polygon based on extent
+            Rectangular polygon based on extent.
 
     .. versionadded:: 1.0.x
 
@@ -8606,33 +8606,33 @@ def set_dtype(
     Parameters
     ----------
         gdf : gpd.geodataframe.GeoDataFrame
-            GeoDataFrame containing the input vector data with uncorrected dtypes
+            GeoDataFrame containing the input vector data with uncorrected dtypes.
 
         dip : str
-            Name of the column containing the dip data, e.g ``dip='dip'``
+            Name of the column containing the dip data, e.g ``dip='dip'``.
 
         azimuth : str
-            Name of the column containing the azimuth data, e.g ``azimuth='azimuth'``
+            Name of the column containing the azimuth data, e.g ``azimuth='azimuth'``.
 
         formation : str
-            Name of the column containing the formation data, e.g ``formation='formation'``
+            Name of the column containing the formation data, e.g ``formation='formation'``.
 
         polarity : str
-            Name of the column containing the polarity data, e.g ``polarity='polarity'``
+            Name of the column containing the polarity data, e.g ``polarity='polarity'``.
 
         x : str
-            Name of the column containing the x coordinates, e.g ``x='X'``
+            Name of the column containing the x coordinates, e.g ``x='X'``.
 
         y : str
-            Name of the column containing the y coordinates, e.g ``y='Y'``
+            Name of the column containing the y coordinates, e.g ``y='Y'``.
 
         z : str
-            Name of the column containing the z coordinates, e.g ``z='Z'``
+            Name of the column containing the z coordinates, e.g ``z='Z'``.
 
     Returns
     -------
         gdf : gpd.geodataframe.GeoDataFrame
-            GeoDataFrame containing the input vector data with corrected dtypes
+            GeoDataFrame containing the input vector data with corrected dtypes.
 
     .. versionadded:: 1.0.x
 
@@ -8724,20 +8724,20 @@ def create_polygons_from_faces(
     Parameters
     ----------
         mesh : pv.core.pointset.PolyData
-            PyVista PolyData dataset
+            PyVista PolyData dataset.
 
         crs : Union[str, pyproj.crs.crs.CRS]
-             Name of the CRS provided to reproject coordinates of the GeoDataFrame, e.g. ``crs='EPSG:4647'``
+             Name of the CRS provided to reproject coordinates of the GeoDataFrame, e.g. ``crs='EPSG:4647'``.
 
 
         return_gdf : bool
             Variable to either return the data as GeoDataFrame or as list of LineStrings.
-            Options include: ``True`` or ``False``, default set to ``True``
+            Options include: ``True`` or ``False``, default set to ``True``.
 
     Returns
     -------
         polygons : Union[List[shapely.geometry.polygon.Polygon], gpd.geodataframe.GeoDataFrame]
-            Triangular Shapely Polygons representing the faces of the mesh
+            Triangular Shapely Polygons representing the faces of the mesh.
 
     .. versionadded:: 1.0.x
 
@@ -8763,13 +8763,14 @@ def create_polygons_from_faces(
         >>> # Create polygons from mesh faces
         >>> polygons = gg.vector.create_polygons_from_faces(mesh=mesh)
         >>> polygons
-            geometry
-        0   POLYGON Z ((297077.414 5677487.262 -838.496, 2...
-        1   POLYGON Z ((298031.070 5678779.547 -648.688, 2...
-        2   POLYGON Z ((297437.539 5676992.094 -816.608, 2...
-        3   POLYGON Z ((298031.070 5678779.547 -648.688, 2...
-        4   POLYGON Z ((295827.680 5680951.574 -825.328, 2...
-
+        | Index | Geometry                                            |
+        +-------+-----------------------------------------------------+
+        | 0     | POLYGON Z ((297077.414 5677487.262 -838.496, 2...)) |
+        | 1     | POLYGON Z ((298031.070 5678779.547 -648.688, 2...)) |
+        | 2     | POLYGON Z ((297437.539 5676992.094 -816.608, 2...)) |
+        | 3     | POLYGON Z ((298031.070 5678779.547 -648.688, 2...)) |
+        | 4     | POLYGON Z ((295827.680 5680951.574 -825.328, 2...)) |
+        +-------+-----------------------------------------------------+
     """
     # Checking that the input mesh is a PyVista PolyData dataset
     if not isinstance(mesh, pv.core.pointset.PolyData):
@@ -8811,19 +8812,19 @@ def unify_polygons(
     Parameters
     ----------
         polygons : Union[List[shapely.geometry.polygon.Polygon], gpd.geodataframe.GeoDataFrame]
-            Triangular Shapely Polygons representing the faces of the mesh
+            Triangular Shapely Polygons representing the faces of the mesh.
 
         crs : Union[str, pyproj.crs.crs.CRS]
-             Name of the CRS provided to reproject coordinates of the GeoDataFrame, e.g. ``crs='EPSG:4647'``
+             Name of the CRS provided to reproject coordinates of the GeoDataFrame, e.g. ``crs='EPSG:4647'``.
 
         return_gdf : bool
             Variable to either return the data as GeoDataFrame or as list of LineStrings.
-            Options include: ``True`` or ``False``, default set to ``True``
+            Options include: ``True`` or ``False``, default set to ``True``.
 
     Returns
     -------
         polygons_merged : Union[List[shapely.geometry.polygon.Polygon], gpd.geodataframe.GeoDataFrame]
-            Merged Shapely Polygons
+            Merged Shapely Polygons.
 
     .. versionadded:: 1.0.x
 
@@ -8834,22 +8835,26 @@ def unify_polygons(
         >>> import geopandas as gpd
         >>> polygons = gpd.read_file(filename='file.shp')
         >>> polygons
-            geometry
-        0   POLYGON Z ((297077.414 5677487.262 -838.496, 2...
-        1   POLYGON Z ((298031.070 5678779.547 -648.688, 2...
-        2   POLYGON Z ((297437.539 5676992.094 -816.608, 2...
-        3   POLYGON Z ((298031.070 5678779.547 -648.688, 2...
-        4   POLYGON Z ((295827.680 5680951.574 -825.328, 2...
-
+        | Index | Geometry                                                                 |
+        +-------+--------------------------------------------------------------------------+
+        | 0     | POLYGON Z ((297077.414 5677487.262 -838.496, 298031.070 5678779.547..... |
+        | 1     | POLYGON Z ((298031.070 5678779.547 -648.688, 297437.539 5676992.094......|
+        | 2     | POLYGON Z ((297437.539 5676992.094 -816.608, 298031.070 5678779.547......|
+        | 3     | POLYGON Z ((298031.070 5678779.547 -648.688, 295827.680 5680951.574......|
+        | 4     | POLYGON Z ((295827.680 5680951.574 -825.328, 297077.414 5677487.262......|
+        +-------+--------------------------------------------------------------------------+
         >>> # Merging polygons
         >>> polygons_merged = gg.vector.unify_polygons(polygons=polygons)
         >>> polygons_merged
-            geometry
-        0   POLYGON Z ((396733.222 5714544.109 -186.252, 3...
-        1   POLYGON Z ((390252.635 5712409.037 -543.142, 3...
-        2   POLYGON Z ((391444.965 5710989.453 -516.000, 3...
-        3   POLYGON Z ((388410.007 5710903.900 -85.654, 38...
-        4   POLYGON Z ((384393.963 5714293.104 -614.106, 3...
+        +----+--------------------------------------------------+
+        |    | geometry                                         |
+        +----+--------------------------------------------------+
+        |  0 | POLYGON Z ((396733.222 5714544.109 -186.252, ... |
+        |  1 | POLYGON Z ((390252.635 5712409.037 -543.142, ... |
+        |  2 | POLYGON Z ((391444.965 5710989.453 -516.000, ... |
+        |  3 | POLYGON Z ((388410.007 5710903.900 -85.654, 3... |
+        |  4 | POLYGON Z ((384393.963 5714293.104 -614.106, ... |
+        +----+--------------------------------------------------+
 
     """
     # Checking that the polygons are of type list of a GeoDataFrame
@@ -8915,19 +8920,17 @@ def unify_linestrings(
     Parameters
     ----------
         linestrings : Union[List[shapely.geometry.linestring.LineString], gpd.geodataframe.GeoDataFrame]
-            LineStrings consisting of two vertices representing extracted contour lines
-
+            LineStrings consisting of two vertices representing extracted contour lines.
         crs : Union[str, pyproj.crs.crs.CRS]
-             Name of the CRS provided to reproject coordinates of the GeoDataFrame, e.g. ``crs='EPSG:4647'``
-
+             Name of the CRS provided to reproject coordinates of the GeoDataFrame, e.g. ``crs='EPSG:4647'``.
         return_gdf : bool
             Variable to either return the data as GeoDataFrame or as list of LineStrings.
-            Options include: ``True`` or ``False``, default set to ``True``
+            Options include: ``True`` or ``False``, default set to ``True``.
 
     Returns
     -------
         linestrings_merged : Union[List[shapely.geometry.linestring.LineString], gpd.geodataframe.GeoDataFrame]
-            Merged Shapely LineStrings
+            Merged Shapely LineStrings.
 
     .. versionadded:: 1.0.x
 
@@ -8938,22 +8941,28 @@ def unify_linestrings(
         >>> import geopandas as gpd
         >>> linestrings = gpd.read_file(filename='file.shp')
         >>> linestrings
-            geometry                                            Z
-        0   LINESTRING Z (32409587.930 5780538.824 -2350.0...   -2350.00
-        1   LINESTRING Z (32407304.336 5777048.086 -2050.0...   -2050.00
-        2   LINESTRING Z (32408748.977 5778005.047 -2200.0...   -2200.00
-        3   LINESTRING Z (32403693.547 5786613.994 -2400.0...   -2400.00
-        4   LINESTRING Z (32404738.664 5782672.480 -2350.0...   -2350.00
+        +----+--------------------------------------------------+----------+
+        |    | geometry                                         | Z        |
+        +----+--------------------------------------------------+----------+
+        |  0 | LINESTRING Z (32409587.930 5780538.824 -2350.0)  | -2350.00 |
+        |  1 | LINESTRING Z (32407304.336 5777048.086 -2050.0)  | -2050.00 |
+        |  2 | LINESTRING Z (32408748.977 5778005.047 -2200.0)  | -2200.00 |
+        |  3 | LINESTRING Z (32403693.547 5786613.994 -2400.0)  | -2400.00 |
+        |  4 | LINESTRING Z (32404738.664 5782672.480 -2350.0)  | -2350.00 |
+        +----+--------------------------------------------------+----------+
 
         >>> # Merging linestrings
         >>> polygons_linestrings = gg.vector.unify_linestrings(linestrings=linestrings)
         >>> polygons_linestrings
-            geometry
-        0   LINESTRING Z (32331825.641 5708789.973 -200.00...
-        1   LINESTRING Z (32334315.359 5723032.766 -250.00...
-        2   LINESTRING Z (32332516.312 5722028.768 -250.00...
-        3   LINESTRING Z (32332712.750 5721717.561 -250.00...
-        4   LINESTRING Z (32332516.312 5722028.768 -250.00...
+        +----+--------------------------------------------------+
+        |    | geometry                                         |
+        +----+--------------------------------------------------+
+        |  0 | LINESTRING Z (32331825.641 5708789.973 -200.00)  |
+        |  1 | LINESTRING Z (32334315.359 5723032.766 -250.00)  |
+        |  2 | LINESTRING Z (32332516.312 5722028.768 -250.00)  |
+        |  3 | LINESTRING Z (32332712.750 5721717.561 -250.00)  |
+        |  4 | LINESTRING Z (32332516.312 5722028.768 -250.00)  |
+        +----+--------------------------------------------------+
 
     """
     # Checking that the linestrings are of type list of a GeoDataFrame
@@ -9016,24 +9025,23 @@ def create_hexagon(center: shapely.geometry.Point, radius: Union[int, float]):
     Parameters
     ----------
         center: shapely.geometry.Point
-            Shapely Point representing the center of the hexagon
-
+            Shapely Point representing the center of the hexagon.
         radius: int, float
-            Radius of the hexagon
+            Radius of the hexagon.
 
     Returns
     -------
         geometry.Polygon(hex_coords): shapely.geometry.Polygon
-            Shapley Polygon in the shape of a hexagon
+            Shapley Polygon in the shape of a hexagon.
 
     .. versionadded:: 1.0.x
 
     .. versionchanged:: 1.1.3
-       Optimized creation of hexagon
+       Optimized creation of hexagon.
 
     See Also
     --------
-        create_hexagon_grid : Creating a hexagon grid
+        create_hexagon_grid : Create a hexagon grid.
 
     """
     # Checking that the center point is provided as Shapely Point
@@ -9063,19 +9071,17 @@ def create_hexagon_grid(
     Parameters
     ----------
         gdf: gpd.GeoDataFrame
-            GeoDataFrame containing the polygons for which a hexagon grid is created
-
+            GeoDataFrame containing the polygons for which a hexagon grid is created.
         radius: int, float
-            Radius of the hexagon
-
+            Radius of the hexagon.
         crop_gdf: bool
-            Boolean to define if the resulting GeoDataFrame should be cropped to the extend of the provided GeoDataFrame
-            Options include: ``True`` or ``False``, default set to ``True``
+            Boolean to define if the resulting GeoDataFrame should be cropped to the extent of the provided GeoDataFrame.
+            Options include: ``True`` or ``False``, default set to ``True``.
 
     Returns
     -------
         hex_gdf: gpd.GeoDataFrame
-            GeoDataFrame containing the hexagon grid
+            GeoDataFrame containing the hexagon grid.
 
     .. versionadded:: 1.0.x
 
@@ -9084,7 +9090,7 @@ def create_hexagon_grid(
 
     See Also
     --------
-        create_hexagon : Creating one hexagon based on a given center and radius
+        create_hexagon : Create one hexagon based on a given center and radius.
 
     """
     # Checking that the gdf is of type GeoDataFrame
@@ -9161,12 +9167,12 @@ def create_voronoi_polygons(
     Parameters
     ----------
         gdf: gpd.geodataframe.GeoDataFrame
-            GeoDataFrame containing the Shapely Points
+            GeoDataFrame containing the Shapely Points.
 
     Returns
     -------
         gdf_polygons: gpd.geodataframe.GeoDataFrame
-            GeoDataFrame containing the valid Voronoi Polygons
+            GeoDataFrame containing the valid Voronoi Polygons.
 
     .. versionadded:: 1.1
 
@@ -9180,7 +9186,7 @@ def create_voronoi_polygons(
 
     Note
     ----
-        (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.Voronoi.html#scipy.spatial.Voronoi)
+        https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.Voronoi.html#scipy.spatial.Voronoi
 
     """
     # Checking that the gdf is of type GeoDataFrame
