@@ -7414,7 +7414,7 @@ def extract_xy_from_polygon_intersections(
                 gdf["formation"].isin([gdf["formation"].unique().tolist()[i]])
             ],
             polygons2=gdf[
-                gdf["formation"].isin(gdf["formation"].unique().tolist()[i + 1 :])
+                gdf["formation"].isin(gdf["formation"].unique().tolist()[i + 1:])
             ],
         )
         for i in range(len(gdf["formation"].unique().tolist()))
@@ -8363,7 +8363,9 @@ def load_gpx_as_geometry(
     return shape
 
 
-def load_gpx_as_gdf(path: str, layer: Union[int, str] = "tracks") -> gpd.geodataframe.GeoDataFrame:
+def load_gpx_as_gdf(
+    path: str, layer: Union[int, str] = "tracks"
+) -> gpd.geodataframe.GeoDataFrame:
     """Load GPX File as GeoPandas GeoDataFrame.
 
     Parameters
@@ -8442,8 +8444,7 @@ def load_gpx_as_gdf(path: str, layer: Union[int, str] = "tracks") -> gpd.geodata
         raise TypeError("The data must be provided as gpx file")
 
     # Opening GPX File
-    gdf = pyogrio.read_datamframe(path_or_buffer=path,
-                                  layer=layer)
+    gdf = pyogrio.read_datamframe(path_or_buffer=path, layer=layer)
 
     return gdf
 
