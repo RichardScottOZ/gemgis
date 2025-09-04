@@ -4,17 +4,14 @@
 
 
 
-[![PyPI](https://img.shields.io/badge/python-3-blue.svg)](https://www.python.org/downloads/)
+[![PyPI](https://img.shields.io/pypi/pyversions/gemgis)](https://www.python.org/downloads/)
 ![PyPI](https://img.shields.io/pypi/v/gemgis)
 ![Conda](https://img.shields.io/conda/vn/conda-forge/gemgis)
 ![GitHub](https://img.shields.io/github/license/cgre-aachen/gemgis)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cgre-aachen/gemgis/main)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 ![Read the Docs](https://img.shields.io/readthedocs/gemgis)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03709/status.svg)](https://doi.org/10.21105/joss.03709)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6511767.svg)](https://doi.org/10.5281/zenodo.6511767)
-[![DOI](https://img.shields.io/badge/DOI-https%3A%2F%2Fdoi.org%2F10.5194%2Fegusphere--egu21--4613-blue)](https://doi.org/10.5194/egusphere-egu21-4613)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/GemGIS)
+
 
 
 <p align="center"><img src="https://raw.githubusercontent.com/cgre-aachen/gemgis/main/docs/getting_started/images/task1.png" width="200"><img src="https://raw.githubusercontent.com/cgre-aachen/gemgis/main/docs/getting_started/images/model1.png" width="300"></p>
@@ -23,7 +20,7 @@
 
 We attempt to simplify the access to open-source spatial data processing for geological modeling and for subsurface data (wells, seismic, etc.) with the development of **GemGIS, a Python-based open-source library**. 
 
-GemGIS wraps and extends the functionality of packages known to the geo-community such as [GeoPandas](https://geopandas.org/), [rasterio](https://rasterio.readthedocs.io/en/latest/#), [OWSLib](https://geopython.github.io/OWSLib/), [Shapely](https://shapely.readthedocs.io/en/latest/manual.html), [PyVista](https://docs.pyvista.org/), [Pandas](https://pandas.pydata.org/), [NumPy](https://numpy.org/) and the geomodeling package [GemPy](https://docs.gempy.org/). 
+GemGIS wraps and extends the functionality of packages known to the geo-community such as [GeoPandas](https://geopandas.org/), [rasterio](https://rasterio.readthedocs.io/en/latest/#), [OWSLib](https://geopython.github.io/OWSLib/), [Shapely](https://shapely.readthedocs.io/en/latest/manual.html), [PyVista](https://docs.pyvista.org/), [Pandas](https://pandas.pydata.org/), [NumPy](https://numpy.org/) and the geomodeling package [GemPy](https://docs.gempy.org/). GemGIS works with the latest release of Gempy (2025.2.0). 
 
 The aim of GemGIS, as indicated by the name, is to become a bridge between conventional geoinformation systems (GIS) such as ArcGIS and QGIS, and geomodeling tools such as GemPy, allowing simpler and more automated workflows from one environment to the other. This also includes making it simpler to visualize the results obtained from GemGIS and GemPy with PyVista or Blender. Further, subsurface data processing workflows are implemented for integrated data analyses.
 
@@ -42,8 +39,8 @@ Furthermore, many [example models](https://gemgis.readthedocs.io/en/latest/getti
 <a name="installation"></a>
 ## Installation
 It is recommended to use GemGIS with **python">=3.11"** in a separated environment. The main packages and its dependencies can be installed via the conda-forge channel. GemGIS is then available through PyPi or Conda. 
-1) `conda install -c conda-forge geopandas">=1.0.1" rasterio">=1.4.3"`
-2) `conda install -c conda-forge pyvista">=0.44.2"`
+1) `conda install -c conda-forge geopandas">=1.1.1" rasterio">=1.4.3"`
+2) `conda install -c conda-forge pyvista">=0.46.3"`
 3) `pip install gemgis` / `conda install -c conda-forge gemgis`
 
 Check out the [Installation Page](https://gemgis.readthedocs.io/en/latest/getting_started/installation.html) for more detailed instructions. 
@@ -79,8 +76,10 @@ journal = {Journal of Open Source Software}
 ```
 
 <a name="ref"></a>
-## References
+## References and published articles utilizing GemGIS
 
+* Jüstel, A. et al.: 3D structural and probabilistic modelling of geothermal reservoir horizons in the Northern Eifel and its foreland. Zeitschrift der Deutschen Gesellschaft für Geowissenschaften, 176 (1), 115-146, https://doi.org/10.1127/zdgg/2025/0436, 2025   
+* Marquetto, L. et al.: Developing a 3D hydrostratigraphical model of the emerged part of the Pelotas Basin along the northern coast of Rio Grande do Sul state, Brazil. Environmental Earth Sciences, 83, 10, 329, https://doi.org/10.1007/s12665-024-11609-y, 2024
 * Jüstel, A. et al.: From Maps to Models - Tutorials for structural geological modeling using GemPy and GemGIS. Journal of Open Source Education, 6(66), 185, https://doi.org/10.21105/jose.00185, 2023.
 * Jüstel, A. et al.: GemGIS - Spatial Data Processing for Geomodeling. Journal of Open Source Software, 7(73), 3709, https://doi.org/10.21105/joss.03709, 2022.
 * Jüstel, A., Endlein Correira, A., Wellmann, F. and Pischke, M.: GemGIS – GemPy Geographic: Open-Source Spatial Data Processing for Geological Modeling. EGU General Assembly 2021, https://doi.org/10.5194/egusphere-egu21-4613, 2021.
